@@ -20,11 +20,14 @@ const checkinTestData = [
 ];
 
 function displayCheckins(checkins) {
-  for (var i = 0; i < checkins.length; i++) {
-    $('#venue_table').append('<tr><td>' + checkins[i].name + '</td>' +
-        '<td>' + checkins[i].checkins + '</td>' +
-        '<td>' + checkins[i].users + '</td>' +
-        '<td>' + checkins[i].link + '</td></tr>');
+  for (let checkin of checkins) {
+    $('#venue_table').append(`
+      <tr>
+        <td>  ${checkin.name}  </td>
+        <td>  ${checkin.checkins}  </td>
+        <td>  ${checkin.users} </td>
+        <td>  ${checkin.link}  </td>
+      </tr>`);
   }
 }
 

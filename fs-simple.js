@@ -1,23 +1,4 @@
-const checkinTestData = [
-  {
-    name: 'Bodega!',
-    checkins: 181,
-    users: 41,
-    link: 'https://foursquare.com/v/bodega/4d8c8c916174a09396389be3',
-  },
-  {
-    name: 'Carters Chocklate Cafe',
-    checkins: 159,
-    users: 55,
-    link: 'https://foursquare.com/v/carters-chocolate-cafe/4cea8f1ffe90a35d23714e0e',
-  },
-  {
-    name: 'Geoffs Cafe Bar',
-    checkins: 802,
-    users: 286,
-    link: 'https://foursquare.com/v/geoffs-caf%C3%A9-bar/4b899439f964a5205a4332e3',
-  },
-];
+var fsCredentials = '&client_id=' + fsConfig.client_id + '&client_secret=' + fsConfig.client_secret + '&v=20140601';
 
 function displayCheckins(checkins) {
   for (let checkin of checkins) {
@@ -31,7 +12,31 @@ function displayCheckins(checkins) {
   }
 }
 
+function loadVenues(locationName, venueKeyword) {
+  var requestOptions = {
+    url: fsConfig.base_url + 'near=' + locationName + '&query=' + venueKeyword + fsCredentials,
+    method: 'GET',
+    json: {},
+  };
+  $.getJSON(requestOptions.url, {}, body => {
+    const venues = body.response.groups[0].items;
+    const checkins = [];
+    for (let venue of venues) {
+      const checkin = {
+        name: venue.venue.name,
+        checkins: venue.venue.stats.checkinsCount,
+        users: venue.venue.stats.usersCount,
+      };
+      checkins.push(checkin);
+    }
+
+    displayCheckins(checkins);
+  });
+}
+
 $('#search_btn').click(function () {
-  console.log(fsConfig);
-  displayCheckins(checkinTestData);
+  $('#venue_table tbody').remove();
+  const locationName = $('#location_name').val();
+  const venueKeyword = $('#venue_keyword').val();
+  loadVenues(locationName, venueKeyword);
 });

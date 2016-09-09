@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <title>foursquare :: Explore Sample</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2/semantic.min.css" type="text/css">
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2/semantic.min.js"></script>
+  </head>
+  <body>
+    <section class="ui container">
+      <div class="ui raised blue inverted center aligned segment">
+        <h1 class="ui header">FoureSquare Search</h1>
+      </div>
+      <div class="ui center aligned rasied segment">
+        <input type="text" name="location" id="location_name" placeholder="Waterford,IE" class="search-input">
+        <input type="text" name="venue_keyword" id="venue_keyword" placeholder="Keywords e.g geoff"
+               class="search-input">
+        <button id="search_btn" class="ui primary button">Search</button>
+      </div>
+      <table class="ui table" id="venue_table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Total Check-Ins</th>
+            <th>Total Current Visit</th>
+            <th>Link</th>
+          </tr>
+        </thead>
+      </table>
+    </section>
+  </body>
+</html>
